@@ -79,6 +79,7 @@ function User.Login(req)
 end
 
 function User.Logout()
+    print("User.Logout")
     context.batch_invoke("Offline")
     return true
 end
@@ -132,8 +133,8 @@ function User.C2SUserData()
 end
 
 function User.C2SPing(req)
-    req.stime = moon.time()
-    context.S2C(CmdCode.S2CPong, req)
+    req.time = moon.time()
+    context.S2C(CmdCode.S2CPing, req)
 end
 
 --请求匹配

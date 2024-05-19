@@ -79,50 +79,6 @@ function _M.saveuser(addr_db, userid, data)
     redis_send(addr_db, "hset", "usermap", userid, data)
 end
 
-if moon.queryservice("db_game") > 0 then
-        ---async
-    ---@param db integer
-    ---@param uid integer
-    ---@overload fun(db: integer, uid: integer):boolean,string
-    ---@overload fun(db: integer, uid: integer):UserData
-    ---@overload fun(db: integer, uid: integer):nil
-    function _M.loaduser(db, uid)
-        local res, err = pgsql.query(db, string.format("select * from userdata where uid=%s;", uid), uid)
-        if not res then
-            ---xpcall lua error
-            return false, "loaduser "..tostring(err)
-        end
-
-        ---check sql error
-        if res.code then
-            return false, table.tostring(res)
-        end
-
-        local row = res.data[1]
-        if row then
-            return jdecode(row.data)
-        end
-        ---空数据:新玩家
-    return nil
-    end
-
-    function _M.saveuser(db, uid, data)
-        assert(data)
-
-        if moon.DEBUG() then
-            schema.validate("UserData", data)
-        end
-
-        local tmp = {
-            "insert into userdata(uid, data) values(",
-            uid,
-            ",'",
-            data, -- auto encode as json
-            "') on conflict (uid) do update set data = excluded.data;"
-        }
-        pgsql.execute(db, tmp, uid)
-    end
-end
 
 function _M.LoadUserMail(addr_db, uid)
     local res, err = redis_call(addr_db, "HGETALL", "mail_"..uid)

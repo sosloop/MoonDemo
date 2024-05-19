@@ -60,7 +60,7 @@ moon.raw_dispatch("C2S",function(msg)
         moon.async(function()
             local ok, res = xpcall(fn, debug.traceback, data)
             if not ok then
-                moon.error(res)
+                moon.error("internal error:",cmd,res)
                 context.S2C(CmdCode.S2CErrorCode,{code = 1}) --server internal error
             elseif res then
                 context.S2C(CmdCode.S2CErrorCode,{code = res})
@@ -71,9 +71,6 @@ end)
 
 context.addr_gate = moon.queryservice("gate")
 context.addr_db_user = moon.queryservice("db_user")
-if moon.queryservice("db_game") > 0 then
-    context.addr_db_user = moon.queryservice("db_game")
-end
 context.addr_center = moon.queryservice("center")
 context.addr_auth = moon.queryservice("auth")
 

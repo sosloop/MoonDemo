@@ -18,6 +18,7 @@ local auth_queue = context.auth_queue
 local temp_openid_uid = {}
 
 local function doAuth(req)
+    print("Auth doAuth")
     local u = context.uid_map[req.uid]
     local addr_user
     if not u then
@@ -97,7 +98,7 @@ end
 local Auth = {}
 
 Auth.Init = function()
-
+    print("Auth.Init")
     moon.async(function()
         while true do
             moon.sleep(10000)
@@ -254,7 +255,9 @@ Auth.C2SLogin = function (req)
         ---make the user offline event in right order.
         local c = context.uid_map[req.uid]
         if c and c.logouttime==0 then
-            moon.send("lua", context.addr_gate, "Kick", req.uid, 0, true)
+            print("may login again:",req.uid)
+            context.S2C(req.uid, CmdCode.S2CDisconnect, {code = -1})
+            moon.send("lua", context.addr_gate, "Gate.Kick", req.uid, 0, true)
             Auth.Disconnect(req.uid)
             return
         end
@@ -294,6 +297,7 @@ end
 
 ---加载离线玩家
 function Auth.PullUser(uid)
+    print("Auth.PullUser",uid)
     local u = context.uid_map[uid]
     if not u then
         local ok,err = Auth.C2SLogin({fd =0 ,uid = uid, pull = true})
@@ -307,6 +311,7 @@ end
 
 ---向玩家发起调用，会主动加载玩家
 function Auth.CallUser(uid, cmd, ...)
+    print("Auth.CallUser",uid,cmd)
     if context.server_exit then
         error(string.format("call user %d cmd %s when server exit", uid, cmd))
     end
@@ -325,6 +330,7 @@ end
 
 ---向玩家发送消息，会主动加载玩家
 function Auth.SendUser(uid, cmd, ...)
+    print("Auth.SendUser",uid,cmd)
     local u, err = Auth.PullUser(uid)
     if not u then
         moon.error(err)
@@ -340,6 +346,7 @@ end
 
 ---向已经在内存的玩家发送消息,不会主动加载玩家
 function Auth.TrySendUser(uid, cmd, ...)
+    print("Auth.TrySendUser",uid,cmd)
     local u = context.uid_map[uid]
     if not u then
         return
@@ -348,6 +355,7 @@ function Auth.TrySendUser(uid, cmd, ...)
 end
 
 function Auth.Disconnect(uid)
+    print("Auth.Disconnect",uid)
     local u = context.uid_map[uid]
     if u then
         assert(moon.call("lua", u.addr_user, "User.Logout"))

@@ -194,6 +194,7 @@ return function(context, sname)
                     error("Can not found service: ".. tostring(key))
                 end
                 t[key] = addr
+                -- print("setup ",sname,key,addr)
                 return addr
             end
             return nil

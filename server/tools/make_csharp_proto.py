@@ -70,7 +70,7 @@ def make_enum(name, fields):
     return res
 
 def make_proto(proto_list_with_file, output_dir, ignore_file_list):
-
+    pattern = re.compile(r'([C,S][2,B][C,S]\w+)')
     for filepath, proto_list in proto_list_with_file.items():
         parentpath, filename = os.path.split(filepath)
         shotname, extension = os.path.splitext(filename)
@@ -85,7 +85,13 @@ def make_proto(proto_list_with_file, output_dir, ignore_file_list):
 
             if protoType == make_annotations.ProtoType.Message:
                 content += "    [ProtoContract]\n"
-                content += "    class {0}{{\n".format(name)
+                match_results = pattern.findall(name)
+                if len(match_results) > 0:
+                    content += "    public partial class {0} : AProto,IMessage {{\n\n".format(name)
+                    content +="        public ushort OpCode() {{ return CmdCode.{0}; }}\n\n".format(name)
+                else:
+                    content += "    public class {0} {{\n".format(name)
+                
                 for line_tuple in fields:
                     if line_tuple[0] == "repeated":
                         content +="        [ProtoMember({0},Name = @\"{1}\")]\n".format(line_tuple[3], line_tuple[2])

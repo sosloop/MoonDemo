@@ -1,4 +1,3 @@
-require("common.LuaPanda").start("127.0.0.1", 8818)
 local moon = require("moon")
 local common = require("common")
 
@@ -12,7 +11,7 @@ local context ={
     uid_address = {}
 }
 
-common.setup(context,"room")
+common.setup(context,"mail")
 
 moon.shutdown(function()
     --- rewrite default behavior: quit immediately

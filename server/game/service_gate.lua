@@ -2,6 +2,7 @@ local moon = require("moon")
 local seri = require("seri")
 local socket = require("moon.socket")
 local common = require("common")
+local buffer = require("buffer")
 local setup = common.setup
 local protocol = common.protocol_pb
 local GameDef = common.GameDef
@@ -19,17 +20,37 @@ local context = {
     uid_map = {},
     fd_map = {},
     auth_watch = {},
+    conn_timeout = {},
+    fd_msg = {},
 }
 
 setup(context)
 
+local function connection_timeout(fd)
+    print("connection or auth timeout: close", fd)
+
+    local c = context.fd_map[fd]
+    if not c then
+        -- socket.close(fd)
+        context.scripts.Gate.Kick(0, fd)
+    end
+    context.conn_timeout[fd] = nil
+
+end
+
 socket.on("accept", function(fd, msg)
     print("GAME SERVER: accept ", fd, moon.decode(msg, "Z"))
-    socket.set_enable_chunked(fd, "w")
+    -- socket.set_enable_chunked(fd, "w")
     --socket.settimeout(fd, 60)
+
+    local timerid = moon.timeout(5000,function()
+        connection_timeout(fd)
+    end)
+    context.conn_timeout[fd] = timerid
 end)
 
 socket.on("message", function(fd, msg)
+
     local c = context.fd_map[fd]
     if not c then
         ---first message must be auth message
@@ -45,7 +66,8 @@ socket.on("message", function(fd, msg)
             local buf = moon.decode(msg, "B")
             protocol.print_message(c.uid, buf)
         end
-
+        --- 超过5秒没发消息就断开
+        context.fd_msg[fd] = moon.time()
         redirect(msg, c.addr_user, PTYPE_C2S, 0, 0)
     end
 end)
@@ -78,30 +100,28 @@ moon.raw_dispatch("S2C",function(msg)
             protocol.print_message(uid, buf)
         end
     else
-        local p = moon.ref_buffer(buf)
+        local p = buffer.to_shared(buf)
         for _, one in ipairs(uid) do
             local c = context.uid_map[one]
             if c then
-                socket.write_ref_buffer(c.fd,p)
+                socket.write(c.fd, p)
                 if moon.DEBUG() then
                     protocol.print_message(one, buf)
                 end
             end
         end
-        moon.unref_buffer(p)
     end
 end)
 
 moon.raw_dispatch("SBC",function(msg)
     local buf = moon.decode(msg, "L")
-    local p = moon.ref_buffer(buf)
+    local p = buffer.to_shared(buf)
     for uid, c in pairs(context.uid_map) do
-        socket.write_ref_buffer(c.fd,p)
+        socket.write(c.fd, p)
         if moon.DEBUG() then
             protocol.print_message(uid, buf)
         end
     end
-    moon.unref_buffer(p)
 end)
 
 

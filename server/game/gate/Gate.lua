@@ -47,6 +47,7 @@ function Gate.Kick(uid, fd, ignore_socket_event)
     end
 
     if fd and fd>0 then
+        Gate.ClearAuthTimer(fd)
         socket.close(fd)
     end
     return true
@@ -72,8 +73,31 @@ function Gate.BindUser(req)
     context.fd_map[req.fd] = c
     context.uid_map[req.uid] = c
     context.auth_watch[req.fd] = nil
+
+    Gate.ClearAuthTimer(req.fd)
+
+    moon.async(function ()
+        while context.fd_map[req.fd] do
+            moon.sleep(5000)
+
+            local subTime = moon.time() - context.fd_msg[req.fd]
+            -- print("subtime=",subTime)
+            if subTime >= 5 then
+                Gate.Kick(req.uid,req.fd)
+                break
+            end
+        end
+    end)
     print(string.format("BindUser fd:%d uid:%d serviceid:%08X", req.fd, req.uid,  req.addr_user))
     return true
+end
+
+function Gate.ClearAuthTimer(fd)
+    local timer = context.conn_timeout[fd]
+    if timer and timer > 0 then
+        moon.remove_timer(timer)
+    end
+    context.conn_timeout[fd] = nil
 end
 
 return Gate

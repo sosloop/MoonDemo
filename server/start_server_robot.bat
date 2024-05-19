@@ -1,0 +1,1 @@
+start cmd /k moon\moon.exe tcp_client.lua

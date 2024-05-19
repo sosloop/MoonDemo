@@ -71,15 +71,6 @@ local function run(node_conf)
             poolsize = 5,
             opts = db_conf.redis
         },
-        -- {
-        --     unique = true,
-        --     name = "db_game",
-        --     file = "moon/service/sqldriver.lua",
-        --     provider = "moon.db.pg",
-        --     threadid = 2,
-        --     poolsize = 5,
-        --     opts = db_conf.pg
-        -- },
         {
             unique = true,
             name = "auth",
@@ -127,20 +118,16 @@ local function run(node_conf)
             file = "game/service_center.lua",
             threadid = 8
         },
-        {
-            name = "robot",
-            file = "robot/robot.lua",
-            unique = true,
-            host = "127.0.0.1",
-            port = 12345
-        }
+        -- {
+        --     name = "robot",
+        --     file = "robot/robot.lua",
+        --     unique = true,
+        --     host = "127.0.0.1",
+        --     port = 12345
+        -- }
     }
 
     local function Start()
-        if moon.queryservice("db_game") > 0 then
-            CreateTable(moon.queryservice("db_game"))
-        end
-
         local data = db.loadserverdata(moon.queryservice("db_server"))
         if not data then
             data = {boot_times = 0}
@@ -198,24 +185,20 @@ local function run(node_conf)
                 assert(moon.call("lua", moon.queryservice("auth"), "Auth.Shutdown"))
                 assert(moon.call("lua", moon.queryservice("mail"), "Mail.Shutdown"))
 
-                moon.sleep(1000)
-                print("5......")
-                moon.sleep(1000)
-                print("4......")
-                moon.sleep(1000)
-                print("3......")
-                moon.sleep(1000)
-                print("2......")
-                moon.sleep(1000)
-                print("1......")
+                -- moon.sleep(1000)
+                -- print("5......")
+                -- moon.sleep(1000)
+                -- print("4......")
+                -- moon.sleep(1000)
+                -- print("3......")
+                -- moon.sleep(1000)
+                -- print("2......")
+                -- moon.sleep(1000)
+                -- print("1......")
 
                 moon.send("lua", moon.queryservice("db_server"), "save_then_quit")
                 moon.send("lua", moon.queryservice("db_user"), "save_then_quit")
                 moon.send("lua", moon.queryservice("db_openid"), "save_then_quit")
-
-                if moon.queryservice("db_game") > 0 then
-                    moon.send("lua", moon.queryservice("db_game"), "save_then_quit")
-                end
 
                 moon.kill(moon.queryservice("robot"))
             else

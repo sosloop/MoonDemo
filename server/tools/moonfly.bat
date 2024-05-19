@@ -1,1 +1,1 @@
-python3 moonfly.py
+C:\Users\chen\AppData\Local\Programs\Python\Python310\python moonfly.py
