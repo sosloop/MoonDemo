@@ -1,6 +1,8 @@
 server/.vscode/settings.json
 server/log/*.log
+server/tools/__pycache__
 BallAction/Logs
 /BallAction/.idea
 /BallAction/Bundles
 /luban/bin
+FairyGUI/FairyGUI-Editor
