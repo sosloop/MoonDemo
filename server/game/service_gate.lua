@@ -43,10 +43,10 @@ socket.on("accept", function(fd, msg)
     -- socket.set_enable_chunked(fd, "w")
     --socket.settimeout(fd, 60)
 
-    local timerid = moon.timeout(5000,function()
-        connection_timeout(fd)
-    end)
-    context.conn_timeout[fd] = timerid
+    -- local timerid = moon.timeout(5000,function()
+    --     connection_timeout(fd)
+    -- end)
+    -- context.conn_timeout[fd] = timerid
 end)
 
 socket.on("message", function(fd, msg)

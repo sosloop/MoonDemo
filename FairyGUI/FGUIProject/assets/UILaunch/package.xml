@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="3krv94p2">
+  <resources>
+    <component id="hy1e1" name="UILaunch.xml" path="/" exported="true"/>
+    <component id="hy1e3" name="Btn.xml" path="/"/>
+  </resources>
+  <publish name="" path="../../BallAction/Assets/Resources/FUI" packageCount="2" genCode="true" codePath="../../BallAction/Assets/Mono/FUIGen"/>
+</packageDescription>

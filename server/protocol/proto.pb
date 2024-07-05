@@ -90,7 +90,7 @@ room.protocommon.proto""
 S2CDead
 id (RidBª
 NetMessagebproto3
-û
+Ê
 
 user.protocommon.proto""
 S2CErrorCode
@@ -116,5 +116,10 @@ C2SUseItem
 C2SHello
 hello (	Rhello" 
 S2CWorld
-world (	RworldBª
+world (	Rworld"	
+C2SPing"
+S2CPing
+time (Rtime"#
+S2CDisconnect
+code (RcodeBª
 NetMessagebproto3

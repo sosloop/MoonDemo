@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280" bgColor="#333333">
+  <displayList>
+    <component id="n0_hy1e" name="n0" src="hy1e2" fileName="CommBg.xml" pkg="34nlfo3a" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <component id="n1_hy1e" name="btnGm" src="hy1e0" fileName="CommButton.xml" pkg="34nlfo3a" xy="289,654" size="150,50">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <Button title="打开GM"/>
+    </component>
+  </displayList>
+</component>

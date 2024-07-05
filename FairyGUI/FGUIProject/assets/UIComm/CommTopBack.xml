@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,100" bgColor="#cccccc">
+  <displayList>
+    <graph id="n2_hy1e" name="bg" xy="0,0" size="720,100" type="rect" lineSize="0" fillColor="#ff999999">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n0_hy1e" name="btnBack" src="hy1e0" fileName="ButtonBack.xml" xy="13,10" size="100,80">
+      <relation target="" sidePair="middle-middle,left-left"/>
+      <Button title="X" titleFontSize="30"/>
+    </component>
+    <text id="n1_hy1e" name="txtTitle" xy="130,15" size="564,70" fontSize="22" align="center" vAlign="middle" autoSize="none" text="title">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+  </displayList>
+  <customProperty target="txtTitle" propertyId="0"/>
+</component>

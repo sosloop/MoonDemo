@@ -180,6 +180,17 @@
 ---@field public world string
 
 
+---@class C2SPing
+
+
+---@class S2CPing
+---@field public time integer
+
+
+---@class S2CDisconnect
+---@field public code integer
+
+
 
 
 
@@ -217,6 +228,5 @@
 
 
 ---@class static_conf
----@field constant constant
----@field example example_cfg[]
----@field item item_cfg[]
+---@field tbconstant tbconstant_cfg[]
+---@field tbitem tbitem_cfg[]

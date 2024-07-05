@@ -202,6 +202,7 @@ Auth.C2SLogin = function (req)
             return false
         end
 
+        print("login openid=",req.openid)
         ---如果是opendid登录, 先得到openid对应的 uid
         local uid = context.openid_map[req.openid]
         if not uid then

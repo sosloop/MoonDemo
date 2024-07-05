@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280" bgColor="#333333">
+  <displayList>
+    <component id="n3_hy1e" name="n3" src="hy1e2" fileName="CommBg.xml" pkg="34nlfo3a" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <list id="n0_hy1e" name="list" xy="0,101" size="720,1162" overflow="scroll">
+      <relation target="" sidePair="width-width,height-height"/>
+    </list>
+    <component id="n1_hy1e" name="bar" src="hy1e1" fileName="CommTopBack.xml" pkg="34nlfo3a" xy="0,0">
+      <relation target="" sidePair="width-width,top-top"/>
+      <property target="txtTitle" propertyId="0" value="GM修改器"/>
+    </component>
+  </displayList>
+</component>

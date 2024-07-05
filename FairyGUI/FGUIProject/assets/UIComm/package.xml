@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="34nlfo3a">
+  <resources>
+    <component id="hy1e0" name="CommButton.xml" path="/" exported="true"/>
+    <component id="hy1e1" name="CommTopBack.xml" path="/" exported="true"/>
+    <component id="hy1e2" name="CommBg.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="" genCode="true"/>
+</packageDescription>

@@ -50,3 +50,18 @@ message S2CWorld
 {
     string world = 1;
 }
+
+message C2SPing
+{
+    
+}
+
+message S2CPing
+{
+    int64 time = 1;
+}
+
+message S2CDisconnect
+{
+    int32 code = 1;
+}

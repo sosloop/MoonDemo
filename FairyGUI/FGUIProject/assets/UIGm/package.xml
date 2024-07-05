@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="3r0ytdi1">
+  <resources>
+    <component id="hy1e0" name="UIGm.xml" path="/" exported="true"/>
+    <component id="hy1e1" name="ButtonGm.xml" path="/"/>
+  </resources>
+  <publish name="" genCode="true"/>
+</packageDescription>

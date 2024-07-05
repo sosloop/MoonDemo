@@ -262,7 +262,7 @@ moon.async(function()
     end
 
     moon.sleep(100)
-    -- for _=1, GameCfg.constant.robot_num do
+    -- for _=1, GameCfg.tbconstant.robot_num do
     --     create_user()
     --     moon.sleep(10)
     -- end

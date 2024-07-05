@@ -28,7 +28,7 @@ local rooms = {}
 
 --简单的匹配策略
 local function CheckMatchQueue(q)
-    local max_player_number =  GameCfg.constant.room.max_player_number
+    local max_player_number =  GameCfg.tbconstant.room.max_player_number
     if #q >= max_player_number then
         local roomid = uuid.next(GameDef.TypeRoom)
         room_conf.name = room_name..roomid

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280" bgColor="#333333">
+  <displayList>
+    <graph id="n5_hy1e" name="n5" xy="0,0" size="720,1280" type="rect" lineSize="0" fillColor="#ffcccccc">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n2_hy1e" name="n2" xy="160,105" size="400,48" fontSize="18" align="center" vAlign="middle" autoSize="none" text="Launch"/>
+    <component id="n3_hy1e" name="btnYooAsset" src="hy1e3" fileName="Btn.xml" xy="283,521" size="150,40">
+      <Button title="YooAsset初始化"/>
+    </component>
+    <component id="n4_hy1e" name="btnHotfix" src="hy1e3" fileName="Btn.xml" xy="285,720" size="150,40">
+      <Button title="HotFix启动"/>
+    </component>
+  </displayList>
+</component>
