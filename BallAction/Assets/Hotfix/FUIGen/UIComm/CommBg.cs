@@ -3,7 +3,7 @@
 using FairyGUI;
 using FairyGUI.Utils;
 
-namespace UIComm
+namespace FUI
 {
     public partial class CommBg : GComponent
     {

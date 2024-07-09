@@ -91,7 +91,11 @@ namespace Hotfix
             
             // UnityEngine.Debug.Log($"ChannelRead {type} | {Newtonsoft.Json.JsonConvert.SerializeObject(deserialize)} ManagedThreadId={Thread.CurrentThread.ManagedThreadId}");
             
-            mDispatchMessage.Dispatch(cmd,(IMessage)deserialize);
+            // mDispatchMessage.Dispatch(cmd,(IMessage)deserialize);
+            Mono.Init.Inst.ThreadSynchronizationContext.Post(() =>
+            {
+                mDispatchMessage.Dispatch(cmd,(IMessage)deserialize);
+            });
 
             byteBuffer.Release();
         }

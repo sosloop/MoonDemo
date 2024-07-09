@@ -83,8 +83,11 @@ namespace Hotfix
             object deserialize = ProtoBuf.Serializer.Deserialize(type,mReadByteBufferStream);
             
             // UnityEngine.Debug.Log($"ChannelRead {type} | {Newtonsoft.Json.JsonConvert.SerializeObject(deserialize)} ManagedThreadId={Thread.CurrentThread.ManagedThreadId}");
+            Mono.Init.Inst.ThreadSynchronizationContext.Post(() =>
+            {
+                mDispatchMessage.Dispatch(cmd,(IMessage)deserialize);
+            });
             
-            mDispatchMessage.Dispatch(cmd,(IMessage)deserialize);
 
             byteBuffer.Release();
         }

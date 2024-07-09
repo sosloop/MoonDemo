@@ -3,7 +3,7 @@
 using FairyGUI;
 using FairyGUI.Utils;
 
-namespace UIMain
+namespace FUI
 {
     public partial class UIMain : GComponent
     {

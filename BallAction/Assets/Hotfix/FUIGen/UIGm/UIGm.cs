@@ -3,12 +3,12 @@
 using FairyGUI;
 using FairyGUI.Utils;
 
-namespace UIGm
+namespace FUI
 {
     public partial class UIGm : GComponent
     {
         public GList m_list;
-        public GComponent m_bar;
+        public CommTopBack m_bar;
         public const string URL = "ui://3r0ytdi1hy1e0";
 
         public static UIGm CreateInstance()
@@ -21,7 +21,7 @@ namespace UIGm
             base.ConstructFromXML(xml);
 
             m_list = (GList)GetChildAt(1);
-            m_bar = (GComponent)GetChildAt(2);
+            m_bar = (CommTopBack)GetChildAt(2);
         }
     }
 }

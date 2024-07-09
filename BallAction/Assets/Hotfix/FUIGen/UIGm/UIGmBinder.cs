@@ -2,7 +2,7 @@
 
 using FairyGUI;
 
-namespace UIGm
+namespace FUI
 {
     public class UIGmBinder
     {

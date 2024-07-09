@@ -2,7 +2,7 @@
 
 using FairyGUI;
 
-namespace UIComm
+namespace FUI
 {
     public class UICommBinder
     {

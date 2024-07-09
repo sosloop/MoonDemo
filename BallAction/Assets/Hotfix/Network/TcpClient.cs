@@ -122,7 +122,7 @@ namespace Hotfix
             mMoonStreamChannelHandler.Send(message);
         }
         
-        public async Task<TResponse> Call<TResponse>(IMessage msg) where TResponse : IMessage
+        public async UniTask<TResponse> Call<TResponse>(IMessage msg) where TResponse : IMessage
         {
             // Debug.Log($"TcpClient Call 1 ManagedThreadId = {Thread.CurrentThread.ManagedThreadId}");
             bool isExit = CmdCode.TypeOpCode.TryGetValue(typeof(TResponse), out var responseId);
@@ -161,9 +161,9 @@ namespace Hotfix
             };
         }
 
-        public async void Dispatch(ushort opCode, IMessage msg)
+        public void Dispatch(ushort opCode, IMessage msg)
         {
-            await UniTask.SwitchToMainThread();
+            // await UniTask.SwitchToMainThread();
             // Debug.Log($"TcpClient Dispatch ManagedThreadId = {Thread.CurrentThread.ManagedThreadId}");
             bool isHandler = false;
             if (tasks.TryGetValue(opCode,out var tcs))

@@ -1,5 +1,6 @@
 ﻿
 using FairyGUI;
+using FUI;
 using NetMessage;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -16,11 +17,11 @@ namespace Hotfix
             FUIPkgMgr.inst.AddPkg("UIMain");
             FUIPkgMgr.inst.AddPkg("UIGm");
             
-            UIComm.UICommBinder.BindAll();
-            UIGm.UIGmBinder.BindAll();
-            UIMain.UIMainBinder.BindAll();
+            UICommBinder.BindAll();
+            UIGmBinder.BindAll();
+            UIMainBinder.BindAll();
 
-            var uiMain = UIMain.UIMain.CreateInstance();
+            var uiMain = UIMain.CreateInstance();
             uiMain.MakeFullScreen();
             uiMain.m_btnGm.onClick.Set(()=>
             {

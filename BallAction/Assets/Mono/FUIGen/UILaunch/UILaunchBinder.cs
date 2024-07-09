@@ -2,7 +2,7 @@
 
 using FairyGUI;
 
-namespace UILaunch
+namespace FUI
 {
     public class UILaunchBinder
     {
