@@ -12,6 +12,7 @@ set SERVER_CODE=%SERVER_PATH%\tools\schema
 set SERVER_DATA=%SERVER_PATH%\static\table
 
 dotnet %LUBAN_DLL% ^
+	--customTemplateDir=.\Templates ^
     -t all ^
     -c cs-bin ^
 	-c lua-lua ^

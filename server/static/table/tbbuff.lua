@@ -1,0 +1,12 @@
+return
+{
+[10000] = {Id=10000,BuffName="冰冻",MaxStackingNum=0,BuffDurationTimeMs=0,BuffDurationRound=2,BuffTriggerIntervalMs=0,BuffTriggerProbability=30,BuffType=1,BuffState=7,BuffTriggerType=1,BuffDamageType=5,DamagePercentage=0,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[10001] = {Id=10001,BuffName="灼烧",MaxStackingNum=5,BuffDurationTimeMs=0,BuffDurationRound=2,BuffTriggerIntervalMs=0,BuffTriggerProbability=100,BuffType=3,BuffState=5,BuffTriggerType=4,BuffDamageType=3,DamagePercentage=35,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[10002] = {Id=10002,BuffName="厚土",MaxStackingNum=2,BuffDurationTimeMs=0,BuffDurationRound=2,BuffTriggerIntervalMs=0,BuffTriggerProbability=100,BuffType=2,BuffState=9,BuffTriggerType=1,BuffDamageType=0,DamagePercentage=30,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[10003] = {Id=10003,BuffName="神力",MaxStackingNum=3,BuffDurationTimeMs=0,BuffDurationRound=2,BuffTriggerIntervalMs=0,BuffTriggerProbability=100,BuffType=2,BuffState=8,BuffTriggerType=1,BuffDamageType=0,DamagePercentage=30,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[10210] = {Id=10210,BuffName="寒冰犀牛技能伤害",MaxStackingNum=0,BuffDurationTimeMs=500,BuffDurationRound=0,BuffTriggerIntervalMs=500,BuffTriggerProbability=100,BuffType=1,BuffState=0,BuffTriggerType=1,BuffDamageType=3,DamagePercentage=260,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[10410] = {Id=10410,BuffName="多段伤害",MaxStackingNum=0,BuffDurationTimeMs=1000,BuffDurationRound=0,BuffTriggerIntervalMs=300,BuffTriggerProbability=100,BuffType=1,BuffState=0,BuffTriggerType=2,BuffDamageType=3,DamagePercentage=80,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[50210] = {Id=50210,BuffName="咏春头",MaxStackingNum=0,BuffDurationTimeMs=1000,BuffDurationRound=0,BuffTriggerIntervalMs=200,BuffTriggerProbability=0,BuffType=1,BuffState=0,BuffTriggerType=2,BuffDamageType=3,DamagePercentage=40,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[50310] = {Id=50310,BuffName="牛角的伤害",MaxStackingNum=0,BuffDurationTimeMs=700,BuffDurationRound=0,BuffTriggerIntervalMs=400,BuffTriggerProbability=100,BuffType=1,BuffState=0,BuffTriggerType=1,BuffDamageType=3,DamagePercentage=300,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+[50410] = {Id=50410,BuffName="火龙卷伤害",MaxStackingNum=0,BuffDurationTimeMs=1800,BuffDurationRound=0,BuffTriggerIntervalMs=500,BuffTriggerProbability=100,BuffType=1,BuffState=0,BuffTriggerType=2,BuffDamageType=3,DamagePercentage=100,BuffAudio="",BuffEffect="",BuffDes="",BuffIcon="",},
+}

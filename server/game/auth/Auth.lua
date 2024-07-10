@@ -257,7 +257,7 @@ Auth.C2SLogin = function (req)
         local c = context.uid_map[req.uid]
         if c and c.logouttime==0 then
             print("may login again:",req.uid)
-            context.S2C(req.uid, CmdCode.S2CDisconnect, {code = -1})
+            context.S2C(req.uid, CmdCode.S2CErrorCode, {code = -1})
             moon.send("lua", context.addr_gate, "Gate.Kick", req.uid, 0, true)
             Auth.Disconnect(req.uid)
             return

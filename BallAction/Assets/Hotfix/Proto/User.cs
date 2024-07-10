@@ -104,12 +104,39 @@ namespace NetMessage{
     }
 
     [ProtoContract]
-    public partial class S2CDisconnect : AProto,IMessage {
+    public partial class C2SDaily : AProto,IMessage {
 
-        public ushort OpCode() { return CmdCode.S2CDisconnect; }
+        public ushort OpCode() { return CmdCode.C2SDaily; }
+
+    }
+
+    [ProtoContract]
+    public partial class S2CDaily : AProto,IMessage {
+
+        public ushort OpCode() { return CmdCode.S2CDaily; }
 
         [ProtoMember(1, Name = @"code")]
         public int Code { get; set; }
+        [ProtoMember(2, Name = @"item")]
+        public ItemData Item { get; set; }
+    }
+
+    [ProtoContract]
+    public partial class C2STurntable : AProto,IMessage {
+
+        public ushort OpCode() { return CmdCode.C2STurntable; }
+
+    }
+
+    [ProtoContract]
+    public partial class S2CTurntable : AProto,IMessage {
+
+        public ushort OpCode() { return CmdCode.S2CTurntable; }
+
+        [ProtoMember(1, Name = @"code")]
+        public int Code { get; set; }
+        [ProtoMember(2, Name = @"item")]
+        public ItemData Item { get; set; }
     }
 
 }

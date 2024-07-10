@@ -22,6 +22,8 @@
 ---@field public gold integer @金币
 ---@field public chapterid integer @当前章节ID
 ---@field public exp integer @当前经验
+---@field public dailytime integer @签到时间
+---@field public dailycount integer @签到天数
 ---@field public itemlist table<integer, ItemData> @道具列表
 
 
@@ -187,8 +189,20 @@
 ---@field public time integer
 
 
----@class S2CDisconnect
+---@class C2SDaily
+
+
+---@class S2CDaily
 ---@field public code integer
+---@field public item ItemData
+
+
+---@class C2STurntable
+
+
+---@class S2CTurntable
+---@field public code integer
+---@field public item ItemData
 
 
 
@@ -221,12 +235,9 @@
 
 
 ---@class user_scripts
+---@field DailyReward DailyReward
 ---@field Hello Hello
 ---@field Item Item
+---@field TurntableLottery TurntableLottery
 ---@field User User
 ---@field UserModel UserModel
-
-
----@class static_conf
----@field tbconstant tbconstant_cfg[]
----@field tbitem tbitem_cfg[]

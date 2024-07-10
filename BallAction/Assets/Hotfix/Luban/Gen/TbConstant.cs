@@ -15,15 +15,15 @@ namespace cfg
 public partial class TbConstant
 {
 
-     private readonly Constant _data;
+     private readonly CfgConstant _data;
 
-     public Constant Data => _data;
+     public CfgConstant Data => _data;
 
     public TbConstant(ByteBuf _buf)
     {
         int n = _buf.ReadSize();
         if (n != 1) throw new SerializationException("table mode=one, but size != 1");
-        _data = Constant.DeserializeConstant(_buf);
+        _data = CfgConstant.DeserializeCfgConstant(_buf);
     }
 
 

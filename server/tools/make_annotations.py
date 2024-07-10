@@ -301,7 +301,8 @@ class EmmyLuaIntelliSense:
 
         logic_content = self.make_game_annotations(game_dir)
 
-        conf_content = self.make_conf_annotations(game_config_dir)
+        # conf_content = self.make_conf_annotations(game_config_dir)
+        conf_content = ""
 
         with open("Annotations.lua", 'a', encoding='utf-8') as fobj:
             fobj.write(logic_content)

@@ -41,7 +41,10 @@ public static class CmdCode
         {CmdCode.S2CMailDel,typeof(S2CMailDel)},
         {CmdCode.C2SPing,typeof(C2SPing)},
         {CmdCode.S2CPing,typeof(S2CPing)},
-        {CmdCode.S2CDisconnect,typeof(S2CDisconnect)},
+        {CmdCode.C2SDaily,typeof(C2SDaily)},
+        {CmdCode.S2CDaily,typeof(S2CDaily)},
+        {CmdCode.C2STurntable,typeof(C2STurntable)},
+        {CmdCode.S2CTurntable,typeof(S2CTurntable)},
 
     };
 
@@ -79,7 +82,10 @@ public static class CmdCode
         {typeof(S2CMailDel),CmdCode.S2CMailDel},
         {typeof(C2SPing),CmdCode.C2SPing},
         {typeof(S2CPing),CmdCode.S2CPing},
-        {typeof(S2CDisconnect),CmdCode.S2CDisconnect},
+        {typeof(C2SDaily),CmdCode.C2SDaily},
+        {typeof(S2CDaily),CmdCode.S2CDaily},
+        {typeof(C2STurntable),CmdCode.C2STurntable},
+        {typeof(S2CTurntable),CmdCode.S2CTurntable},
 
     };
 
@@ -115,7 +121,10 @@ public static class CmdCode
     public const ushort S2CMailDel = 30;
     public const ushort C2SPing = 31;
     public const ushort S2CPing = 32;
-    public const ushort S2CDisconnect = 33;
+    public const ushort C2SDaily = 33;
+    public const ushort S2CDaily = 34;
+    public const ushort C2STurntable = 35;
+    public const ushort S2CTurntable = 36;
 
 }
 

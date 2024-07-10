@@ -42,6 +42,12 @@ local ErrorCode = {
 
     ---奖励已经领取过
     DailyTaskReceived = 701,
+
+    ---奖励配置最大值
+    DailyConfMax = 801,
+
+    ---奖励已经领取过
+    DailyReceived = 802,
 }
 
 return ErrorCode

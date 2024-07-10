@@ -110,10 +110,6 @@ function Client.new(host, port, name)
                     print("GAME OVER: ", name)
                     client.ok = false
                     return
-                elseif cmd == "S2CDisconnect" then
-                    print("More Login: ", name)
-                    client.ok = false
-                    return
                 end
             end
         end

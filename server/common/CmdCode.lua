@@ -35,7 +35,10 @@ local M={
     S2CMailDel = 30,
     C2SPing = 31,
     S2CPing = 32,
-    S2CDisconnect = 33,
+    C2SDaily = 33,
+    S2CDaily = 34,
+    C2STurntable = 35,
+    S2CTurntable = 36,
 
 }
 
@@ -54,6 +57,8 @@ local forward = {
     C2SMailMark = 'addr_mail',
     C2SMailDel = 'addr_mail',
     C2SPing = 'addr_user',
+    C2SDaily = 'addr_user',
+    C2STurntable = 'addr_user',
 
 }
 

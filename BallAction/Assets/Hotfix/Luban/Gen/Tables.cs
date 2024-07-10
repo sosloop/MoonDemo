@@ -15,11 +15,21 @@ public partial class Tables
 {
     public TbItem TbItem {get; }
     public TbConstant TbConstant {get; }
+    public TbHero TbHero {get; }
+    public TbBuff TbBuff {get; }
+    public TbSkill TbSkill {get; }
+    public TbDailyReward TbDailyReward {get; }
+    public TbTurntableLottery TbTurntableLottery {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
         TbItem = new TbItem(loader("tbitem"));
         TbConstant = new TbConstant(loader("tbconstant"));
+        TbHero = new TbHero(loader("tbhero"));
+        TbBuff = new TbBuff(loader("tbbuff"));
+        TbSkill = new TbSkill(loader("tbskill"));
+        TbDailyReward = new TbDailyReward(loader("tbdailyreward"));
+        TbTurntableLottery = new TbTurntableLottery(loader("tbturntablelottery"));
         ResolveRef();
     }
     
@@ -27,6 +37,11 @@ public partial class Tables
     {
         TbItem.ResolveRef(this);
         TbConstant.ResolveRef(this);
+        TbHero.ResolveRef(this);
+        TbBuff.ResolveRef(this);
+        TbSkill.ResolveRef(this);
+        TbDailyReward.ResolveRef(this);
+        TbTurntableLottery.ResolveRef(this);
     }
 }
 

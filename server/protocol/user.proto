@@ -61,7 +61,24 @@ message S2CPing
     int64 time = 1;
 }
 
-message S2CDisconnect
+message C2SDaily
+{
+    
+}
+
+message S2CDaily
 {
     int32 code = 1;
+    ItemData item = 2;
+}
+
+message C2STurntable
+{
+    
+}
+
+message S2CTurntable
+{
+    int32 code = 1;
+    ItemData item = 2;
 }

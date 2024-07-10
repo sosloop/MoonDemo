@@ -12,23 +12,23 @@ using Luban;
 
 namespace cfg
 {
-public sealed partial class Constant : Luban.BeanBase
+public sealed partial class CfgConstant : Luban.BeanBase
 {
-    public Constant(ByteBuf _buf) 
+    public CfgConstant(ByteBuf _buf) 
     {
         Room = Room.DeserializeRoom(_buf);
         RobotNum = _buf.ReadInt();
     }
 
-    public static Constant DeserializeConstant(ByteBuf _buf)
+    public static CfgConstant DeserializeCfgConstant(ByteBuf _buf)
     {
-        return new Constant(_buf);
+        return new CfgConstant(_buf);
     }
 
     public readonly Room Room;
     public readonly int RobotNum;
    
-    public const int __ID__ = -503167036;
+    public const int __ID__ = -693580792;
     public override int GetTypeId() => __ID__;
 
     public  void ResolveRef(Tables tables)

@@ -1,5 +1,6 @@
 local moon = require("moon")
 local common = require("common")
+local dailyreward = require("game.user.DailyReward")
 local CmdCode = common.CmdCode
 local GameCfg = common.GameCfg
 local Database = common.Database
@@ -39,7 +40,12 @@ function User.Load(req)
                 uid = req.uid,
                 name = req.openid,
                 level = 10,
-                score = 0
+                score = 0,
+                dailycount = 0,
+                dailytime = 0,
+                gold = 0,
+                diamond = 0,
+                exp = 0,
             }
         end
 

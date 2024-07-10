@@ -90,7 +90,7 @@ room.protocommon.proto""
 S2CDead
 id (RidBª
 NetMessagebproto3
-Ê
+Ã
 
 user.protocommon.proto""
 S2CErrorCode
@@ -119,7 +119,14 @@ C2SUseItem
 world (	Rworld"	
 C2SPing"
 S2CPing
-time (Rtime"#
-S2CDisconnect
-code (RcodeBª
+time (Rtime"
+
+C2SDaily"=
+S2CDaily
+code (Rcode
+item (2	.ItemDataRitem"
+C2STurntable"A
+S2CTurntable
+code (Rcode
+item (2	.ItemDataRitemBª
 NetMessagebproto3

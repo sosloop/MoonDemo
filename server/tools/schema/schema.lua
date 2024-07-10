@@ -28,6 +28,84 @@ local enums =
      ---@field public NEW integer
      ---@field public READ_WRITE integer @位标记使用示例
     ['test.AccessFlag'] = {   WRITE=1,  READ=2,  TRUNCATE=4,  NEW=8,  READ_WRITE=3,  };
+    ---@class LogicObjectState
+     ---@field public Empty integer
+     ---@field public Survival integer @存活中
+     ---@field public Death integer @死亡
+     ---@field public SurvivalWiteing integer @存活等待中
+    ['LogicObjectState'] = {   Empty=0,  Survival=1,  Death=2,  SurvivalWiteing=3,  };
+    ---@class HeroTeamEnum
+     ---@field public Empty integer
+     ---@field public Self integer
+     ---@field public Enemy integer
+    ['HeroTeamEnum'] = {   Empty=0,  Self=1,  Enemy=2,  };
+    ---@class SkillType
+     ---@field public Empty integer
+     ---@field public MoveToAttack integer @普工型技能
+     ---@field public MoveToEnemyConter integer @移动到敌方阵容中心位置
+     ---@field public MoveToConter integer @移动到画面中间位置
+     ---@field public Chant integer @吟唱型技能
+     ---@field public Ballistic integer @弹道型技能
+    ['SkillType'] = {   Empty=0,  MoveToAttack=1,  MoveToEnemyConter=2,  MoveToConter=3,  Chant=4,  Ballistic=5,  };
+    ---@class TargetType
+     ---@field public Empty integer
+     ---@field public Teammate integer @队友
+     ---@field public Enemy integer @敌人
+    ['TargetType'] = {   Empty=0,  Teammate=1,  Enemy=2,  };
+    ---@class SkillAttackType
+     ---@field public Empty integer
+     ---@field public SingTarget integer @单体目标
+     ---@field public AllHero integer @所有英雄
+     ---@field public BackRowHero integer @后排英雄
+     ---@field public ForntRowHero integer @前排英雄
+     ---@field public SamColumnHero integer @同一列的英雄，同一列英雄全部阵亡后，攻击另一侧，最后是中间的英雄
+    ['SkillAttackType'] = {   Empty=0,  SingTarget=1,  AllHero=2,  BackRowHero=3,  ForntRowHero=4,  SamColumnHero=5,  };
+    ---@class DamageType
+     ---@field public Empty integer
+     ---@field public NormalDamage integer @普通伤害
+     ---@field public RealDamage integer @真实伤害，无视护盾效果 和减伤效果
+     ---@field public AtkPercentage integer @攻击力百分比伤害
+     ---@field public HPPercentage integer @生命值百分比伤害
+    ['DamageType'] = {   Empty=0,  NormalDamage=1,  RealDamage=2,  AtkPercentage=3,  HPPercentage=4,  };
+    ---@class SKillState
+     ---@field public Empty integer
+     ---@field public ShakeBefore integer @技能前摇
+     ---@field public ShakeAfter integer @技能后摇
+    ['SKillState'] = {   Empty=0,  ShakeBefore=1,  ShakeAfter=2,  };
+    ---@class BuffType
+     ---@field public Empty integer
+     ---@field public DamageBuff integer @伤害型buff
+     ---@field public Buff integer @增益buff
+     ---@field public DeBuff integer @存活等待中减益buff
+     ---@field public Control integer @控制buff
+    ['BuffType'] = {   Empty=0,  DamageBuff=1,  Buff=2,  DeBuff=3,  Control=4,  };
+    ---@class BuffState
+     ---@field public Empty integer
+     ---@field public PercentageReduceDamage integer @百分比减伤
+     ---@field public DamageDeepening integer @伤害加深
+     ---@field public HPRecoveryIncrease integer @生命值回复增加
+     ---@field public HPRecoveryReduce integer @生命值回复减少
+     ---@field public Durn integer @灼烧
+     ---@field public Purify integer @净化
+     ---@field public Forzen integer @冰冻
+     ---@field public AtkAdd integer @攻击增加
+     ---@field public DefAdd integer @防御增加
+    ['BuffState'] = {   Empty=0,  PercentageReduceDamage=1,  DamageDeepening=2,  HPRecoveryIncrease=3,  HPRecoveryReduce=4,  Durn=5,  Purify=6,  Forzen=7,  AtkAdd=8,  DefAdd=9,  };
+    ---@class BuffTriggerType
+     ---@field public Empty integer
+     ---@field public OneDamage_RealTiem integer @即时性 一次性伤害
+     ---@field public MultisegmentDamage_RealTime integer @即时性 多段伤害
+     ---@field public Damage_RoundStart integer @回合开始时伤害
+     ---@field public Damage_RoundEnd integer @回合结束时伤害
+    ['BuffTriggerType'] = {   Empty=0,  OneDamage_RealTiem=1,  MultisegmentDamage_RealTime=2,  Damage_RoundStart=3,  Damage_RoundEnd=4,  };
+    ---@class BuffDamageType
+     ---@field public Empty integer
+     ---@field public NormalAttackDamage integer @普通伤害
+     ---@field public RealDamage integer @真实伤害
+     ---@field public AtkPercentage integer @攻击力百分比伤害
+     ---@field public HPPercentage integer @生命值百分比伤害
+     ---@field public NoneDamageControl integer @无伤害控制型
+    ['BuffDamageType'] = {   Empty=0,  NormalAttackDamage=1,  RealDamage=2,  AtkPercentage=3,  HPPercentage=4,  NoneDamageControl=5,  };
 }
 
 local beans = {}
@@ -138,17 +216,131 @@ local beans = {}
         beans['Room'] = class
     end
     do
-    ---@class Constant 
+    ---@class CfgSkill 
+     ---@field public Id integer @Id
+     ---@field public SkillName string @技能名称
+     ---@field public NeedRageValue integer @技能所需怒气值
+     ---@field public SkillShakeBeforeTimeMs integer @技能前摇时间ms
+     ---@field public SkillAttackDurationMS integer @技能攻击持续时间ms
+     ---@field public SkillShakeArfterMs integer @技能后摇时间ms
+     ---@field public SkillType integer @技能类型
+     ---@field public TargetType integer @技能生效目标
+     ---@field public SkillAttackType integer @技能攻击类型
+     ---@field public DamageType integer @技能伤害类型
+     ---@field public DamagePercentage integer @伤害百分比
+     ---@field public AddBuffs integer[] @技能附加buff
+     ---@field public Bullet string @子弹预制体
+     ---@field public SkillAnim string @技能动画
+     ---@field public SkillAudio string @技能声效
+     ---@field public SkillEffect string @技能特效
+     ---@field public SkillHitEffect string @技能命中特效
+     ---@field public SkillDes string @技能描述
+     ---@field public SkillIcon string @技能图标
+        local class = {
+            { name='Id', type='integer'},
+            { name='SkillName', type='string'},
+            { name='NeedRageValue', type='integer'},
+            { name='SkillShakeBeforeTimeMs', type='integer'},
+            { name='SkillAttackDurationMS', type='integer'},
+            { name='SkillShakeArfterMs', type='integer'},
+            { name='SkillType', type='integer'},
+            { name='TargetType', type='integer'},
+            { name='SkillAttackType', type='integer'},
+            { name='DamageType', type='integer'},
+            { name='DamagePercentage', type='integer'},
+            { name='AddBuffs', type='integer[]'},
+            { name='Bullet', type='string'},
+            { name='SkillAnim', type='string'},
+            { name='SkillAudio', type='string'},
+            { name='SkillEffect', type='string'},
+            { name='SkillHitEffect', type='string'},
+            { name='SkillDes', type='string'},
+            { name='SkillIcon', type='string'},
+        }
+        beans['CfgSkill'] = class
+    end
+    do
+    ---@class CfgConstant 
      ---@field public room Room
      ---@field public robot_num integer
         local class = {
             { name='room', type='Room'},
             { name='robot_num', type='integer'},
         }
-        beans['Constant'] = class
+        beans['CfgConstant'] = class
     end
     do
-    ---@class Item 
+    ---@class CfgBuff 
+     ---@field public Id integer @Id
+     ---@field public BuffName string @Buff名称
+     ---@field public MaxStackingNum integer @最大叠加层数
+     ---@field public BuffDurationTimeMs integer @持续时间
+     ---@field public BuffDurationRound integer @持续回合
+     ---@field public BuffTriggerIntervalMs integer @触发间隔
+     ---@field public BuffTriggerProbability integer @触发概率
+     ---@field public BuffType integer @Buff类型
+     ---@field public BuffState integer @Buff状态
+     ---@field public BuffTriggerType integer @Buff触发方式
+     ---@field public BuffDamageType integer @Buff伤害类型
+     ---@field public DamagePercentage integer @伤害百分比
+     ---@field public BuffAudio string @Buff声效
+     ---@field public BuffEffect string @Buff特效
+     ---@field public BuffDes string @Buff描述
+     ---@field public BuffIcon string @Buff图标
+        local class = {
+            { name='Id', type='integer'},
+            { name='BuffName', type='string'},
+            { name='MaxStackingNum', type='integer'},
+            { name='BuffDurationTimeMs', type='integer'},
+            { name='BuffDurationRound', type='integer'},
+            { name='BuffTriggerIntervalMs', type='integer'},
+            { name='BuffTriggerProbability', type='integer'},
+            { name='BuffType', type='integer'},
+            { name='BuffState', type='integer'},
+            { name='BuffTriggerType', type='integer'},
+            { name='BuffDamageType', type='integer'},
+            { name='DamagePercentage', type='integer'},
+            { name='BuffAudio', type='string'},
+            { name='BuffEffect', type='string'},
+            { name='BuffDes', type='string'},
+            { name='BuffIcon', type='string'},
+        }
+        beans['CfgBuff'] = class
+    end
+    do
+    ---@class CfgHero 
+     ---@field public Id integer @Id
+     ---@field public HeroName string
+     ---@field public Type integer
+     ---@field public Skills integer[] @技能数组id
+     ---@field public Hp integer @血量
+     ---@field public Atk integer @物理攻击力
+     ---@field public Def integer @防御力
+     ---@field public Agl integer @敏捷值
+     ---@field public AtkRage integer @攻击回复怒气值
+     ---@field public TakeDamageRage integer @受击回复怒气值
+     ---@field public MaxRage integer @最大怒气值
+     ---@field public HeroIcon string @Hero图标
+     ---@field public SkillDes string @技能介绍
+        local class = {
+            { name='Id', type='integer'},
+            { name='HeroName', type='string'},
+            { name='Type', type='integer'},
+            { name='Skills', type='integer[]'},
+            { name='Hp', type='integer'},
+            { name='Atk', type='integer'},
+            { name='Def', type='integer'},
+            { name='Agl', type='integer'},
+            { name='AtkRage', type='integer'},
+            { name='TakeDamageRage', type='integer'},
+            { name='MaxRage', type='integer'},
+            { name='HeroIcon', type='string'},
+            { name='SkillDes', type='string'},
+        }
+        beans['CfgHero'] = class
+    end
+    do
+    ---@class CfgItem 
      ---@field public id integer @这是id
      ---@field public name string @名字
      ---@field public desc string @描述
@@ -157,9 +349,7 @@ local beans = {}
      ---@field public expire_time integer @过期时间
      ---@field public batch_useable boolean @能否批量使用
      ---@field public quality integer @品质
-     ---@field public exchange_stream item.ItemExchange @道具兑换配置
      ---@field public exchange_list item.ItemExchange[]
-     ---@field public exchange_column item.ItemExchange @道具兑换配置
         local class = {
             { name='id', type='integer'},
             { name='name', type='string'},
@@ -169,18 +359,56 @@ local beans = {}
             { name='expire_time', type='integer'},
             { name='batch_useable', type='boolean'},
             { name='quality', type='integer'},
-            { name='exchange_stream', type='item.ItemExchange'},
             { name='exchange_list', type='item.ItemExchange[]'},
-            { name='exchange_column', type='item.ItemExchange'},
         }
-        beans['Item'] = class
+        beans['CfgItem'] = class
+    end
+    do
+    ---@class CfgDailyReward 
+     ---@field public Id integer @Id
+     ---@field public Item integer
+     ---@field public Count integer
+        local class = {
+            { name='Id', type='integer'},
+            { name='Item', type='integer'},
+            { name='Count', type='integer'},
+        }
+        beans['CfgDailyReward'] = class
+    end
+    do
+    ---@class CfgTurntableLottery 
+     ---@field public Id integer @Id
+     ---@field public Item integer
+     ---@field public Count integer
+     ---@field public Probability integer
+        local class = {
+            { name='Id', type='integer'},
+            { name='Item', type='integer'},
+            { name='Count', type='integer'},
+            { name='Probability', type='integer'},
+        }
+        beans['CfgTurntableLottery'] = class
     end
 
 local tables =
 {
-    { name='TbItem', file='tbitem', mode='map', index='id', value_type='Item' },
-    { name='TbConstant', file='tbconstant', mode='one', value_type='Constant'},
+    { name='TbItem', file='tbitem', mode='map', index='id', value_type='CfgItem' },
+    { name='TbConstant', file='tbconstant', mode='one', value_type='CfgConstant'},
+    { name='TbHero', file='tbhero', mode='map', index='Id', value_type='CfgHero' },
+    { name='TbBuff', file='tbbuff', mode='map', index='Id', value_type='CfgBuff' },
+    { name='TbSkill', file='tbskill', mode='map', index='Id', value_type='CfgSkill' },
+    { name='TbDailyReward', file='tbdailyreward', mode='map', index='Id', value_type='CfgDailyReward' },
+    { name='TbTurntableLottery', file='tbturntablelottery', mode='map', index='Id', value_type='CfgTurntableLottery' },
 }
+
+---@class static_conf
+---@field tbitem CfgItem[]
+---@field tbconstant CfgConstant
+---@field tbhero CfgHero[]
+---@field tbbuff CfgBuff[]
+---@field tbskill CfgSkill[]
+---@field tbdailyreward CfgDailyReward[]
+---@field tbturntablelottery CfgTurntableLottery[]
 
 return { enums = enums, beans = beans, tables = tables }
 
