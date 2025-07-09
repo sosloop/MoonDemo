@@ -2,13 +2,12 @@
 
 return {
     vector2 = require("common.vector2"),
-    protocol = require("common.protocol_pb"), -- protobuf
-    --protocol = require("common.protocol"), -- json
+    -- protocol = require("common.protocol_pb"), -- protobuf
+    protocol = require("common.protocol"), -- json
 
     CmdCode = require("common.CmdCode"),
     Database = require("common.Database"),
     GameCfg = require("common.GameCfg"),
     GameDef = require("common.GameDef"),
-    ErrorCode = require("common.ErrorCode"),
-    CreateTable = require("common.CreateTable")
+    ErrorCode = require("common.ErrorCode")
 }

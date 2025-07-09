@@ -1,1 +1,1 @@
-python3 moonfly.py
+D:\\soft\\py31\\python moonfly.py

@@ -39,7 +39,8 @@ function User.Load(req)
                 uid = req.uid,
                 name = req.openid,
                 level = 10,
-                score = 0
+                score = 0,
+                regtime = moon.time()
             }
         end
 
@@ -99,6 +100,8 @@ function User.Offline()
     if not state.online then
         return
     end
+
+    scripts.UserModel.MutGet().offlinetime = moon.time()
 
     print(context.uid, "offline")
     state.online = false

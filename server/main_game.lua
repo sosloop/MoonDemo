@@ -4,7 +4,8 @@ if _G["__init__"] then
     return {
         thread = 16,
         enable_stdout = true,
-        logfile = string.format("log/game-%s-%s.log", arg[1], os.date("%Y-%m-%d-%H-%M-%S")),
+        logfile = string.format("log/game-%s-%s.log", arg[1], os.date("%Y-%m-%d")),
+        --logfile = string.format("log/game-%s-%s.log", arg[1], os.date("%Y-%m-%d-%H-%M-%S")),
         loglevel = "DEBUG",
         path = table.concat({
             "./?.lua",
@@ -24,7 +25,6 @@ local serverconf = require("serverconf")
 local common = require("common")
 local schema = require("schema")
 local db = common.Database
-local CreateTable = common.CreateTable
 
 local arg = moon.args()
 
@@ -69,15 +69,6 @@ local function run(node_conf)
             poolsize = 5,
             opts = db_conf.redis
         },
-        -- {
-        --     unique = true,
-        --     name = "db_game",
-        --     file = "moon/service/sqldriver.lua",
-        --     provider = "moon.db.pg",
-        --     threadid = 2,
-        --     poolsize = 5,
-        --     opts = db_conf.pg
-        -- },
         {
             unique = true,
             name = "auth",
@@ -123,20 +114,18 @@ local function run(node_conf)
             name = "mail",
             file = "game/service_mail.lua",
             threadid = 8
-        },
-        {
-            name = "robot",
-            file = "robot/robot.lua",
-            unique = true,
-            host = "127.0.0.1",
-            port = 12345
         }
+        -- ,
+        -- {
+        --     name = "robot",
+        --     file = "robot/robot.lua",
+        --     unique = true,
+        --     host = "127.0.0.1",
+        --     port = 12345
+        -- }
     }
 
     local function Start()
-        if moon.queryservice("db_game") > 0 then
-            CreateTable(moon.queryservice("db_game"))
-        end
 
         local data = db.loadserverdata(moon.queryservice("db_server"))
         if not data then
@@ -196,7 +185,7 @@ local function run(node_conf)
                 assert(moon.call("lua", moon.queryservice("mail"), "Mail.Shutdown"))
 
                 -- wait other service shutdown
-                local i = 5
+                local i = 2
                 while i > 0 do
                     moon.sleep(1000)
                     print(i .. "......")
@@ -205,10 +194,6 @@ local function run(node_conf)
                 moon.send("lua", moon.queryservice("db_server"), "save_then_quit")
                 moon.send("lua", moon.queryservice("db_user"), "save_then_quit")
                 moon.send("lua", moon.queryservice("db_openid"), "save_then_quit")
-
-                if moon.queryservice("db_game") > 0 then
-                    moon.send("lua", moon.queryservice("db_game"), "save_then_quit")
-                end
 
                 moon.kill(moon.queryservice("robot"))
             else

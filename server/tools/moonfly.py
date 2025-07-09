@@ -218,8 +218,8 @@ class ProtoGen(object):
             fobj.write(cmdcode_template % (
                 lua_cmdcode_content, forward_content))
 
-        with open(self.config.csharp_cmd_file, "w", encoding='utf-8') as fobj:
-            fobj.write(csharp_cmdcode_template % (charp_cmdcode_content))
+        # with open(self.config.csharp_cmd_file, "w", encoding='utf-8') as fobj:
+        #     fobj.write(csharp_cmdcode_template % (charp_cmdcode_content))
 
 
 config = Config(
@@ -249,7 +249,7 @@ try:
         json_verify_out_file="../protocol/json_verify.json"
     )
 
-    make_csharp_proto.make_proto(proto_list_with_file, config.csharp_out_dir, config.ignore_file_list)
+    # make_csharp_proto.make_proto(proto_list_with_file, config.csharp_out_dir, config.ignore_file_list)
 
     print("Execution successful. Press any key to continue.")
 

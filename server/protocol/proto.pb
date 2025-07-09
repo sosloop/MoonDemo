@@ -9,7 +9,7 @@
 S2CGameOver
 score (RscoreBª
 NetMessagebproto3
-³
+Œ
 common.proto"%
 Vector2
 x (Rx
@@ -24,7 +24,29 @@ NetMessagebproto3
 flag (Rflag#
 rewards (2	.ItemDataRrewards
 trace (Rtrace
-parmas (	RparmasBª
+parmas (	Rparmas"¤
+ProductionData
+Id (RId
+ConfigId (RConfigId
+
+TargetTime (R
+TargetTime
+	StartTime (R	StartTime(
+ProductionState (RProductionState"j
+AttributeEntryData
+Id (RId
+Key (RKey
+Value (RValue
+	EntryType (R	EntryType"f
+TaskData
+ConfigId (RConfigId
+	TaskState (R	TaskState 
+TaskPogress (RTaskPogress"\
+RankData
+Id (RId
+UnitId (RUnitId
+Name (	RName
+Count (RCountBª
 NetMessagebproto3
 ë
 
@@ -90,7 +112,7 @@ room.protocommon.proto""
 S2CDead
 id (RidBª
 NetMessagebproto3
-û
+Ý
 
 user.protocommon.proto""
 S2CErrorCode
@@ -116,5 +138,49 @@ C2SUseItem
 C2SHello
 hello (	Rhello" 
 S2CWorld
-world (	RworldBª
+world (	Rworld"-
+C2SStartGameLevel
+levelid (Rlevelid"
+S2CStartGameLevel"+
+C2SEndGameLevel
+levelid (Rlevelid"K
+S2CEndGameLevel
+round (Rround"
+battleresult (Rbattleresult"
+C2SUpRoleLevel"
+S2CUpRoleLevel"8
+C2SAddAttributePoint 
+numerictype (Rnumerictype"
+S2CAddAttributePoint"%
+C2SSellItem
+itemid (Ritemid"
+S2CSellItem"&
+C2SEquipItem
+itemid (Ritemid"
+S2CEquipItem":
+C2SUnLoadEquipItem$
+equipposition (Requipposition"
+S2CUnLoadEquipItem"
+C2SSendChat
+msg (	Rmsg"=
+S2CNoticeChat
+nickname (	Rnickname
+msg (	Rmsg"0
+C2SStartProduction
+configid (Rconfigid"M
+S2CStartProduction7
+productiondata (2.ProductionDataRproductiondata"2
+C2SReceiveProduction
+configid (Rconfigid"O
+S2CReceiveProduction7
+productiondata (2.ProductionDataRproductiondata"2
+C2SReceiveTaskReward
+configid (Rconfigid"O
+S2CReceiveTaskReward7
+productiondata (2.ProductionDataRproductiondata":
+S2CUpdateTaskInfo%
+taskdata (2	.TaskDataRtaskdata"
+C2SGetRanks"6
+S2CGetRanks'
+	rankdatas (2	.RankDataR	rankdatasBª
 NetMessagebproto3

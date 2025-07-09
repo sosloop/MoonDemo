@@ -74,9 +74,6 @@ end)
 
 context.addr_gate = moon.queryservice("gate")
 context.addr_db_user = moon.queryservice("db_user")
-if moon.queryservice("db_game") > 0 then
-    context.addr_db_user = moon.queryservice("db_game")
-end
 context.addr_center = moon.queryservice("center")
 context.addr_auth = moon.queryservice("auth")
 context.addr_mail = moon.queryservice("mail")

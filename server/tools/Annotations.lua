@@ -3,6 +3,30 @@
 --- </auto-generated>
 
 
+---@class AuthUser
+---@field public addr_user integer @玩家服务address
+---@field public openid string @
+---@field public uid integer @玩家uid
+---@field public logouttime integer @玩家登出时间,0表示在线
+---@field public online boolean @@是否在线
+
+
+---@class UserData
+---@field public openid string @
+---@field public uid integer @玩家uid
+---@field public name string @玩家名字
+---@field public level integer @玩家等级
+---@field public score integer @玩家分数
+---@field public logintime integer @玩家上线时间
+---@field public offlinetime integer @玩家下线时间
+---@field public diamond integer @宝石
+---@field public gold integer @金币
+---@field public chapterid integer @当前章节ID
+---@field public exp integer @当前经验
+---@field public itemlist table<integer, ItemData> @道具列表
+---@field public regtime integer @玩家注册时间
+
+
 ---@class C2SMatch
 
 
@@ -15,6 +39,54 @@
 
 ---@class S2CGameOver
 ---@field public score integer
+
+
+---@class Vector2
+---@field public x number
+---@field public y number
+
+
+---@class ItemData
+---@field public id integer @道具id
+---@field public count integer @道具数量
+
+
+---@class MailData
+---@field public id integer @邮件唯一ID
+---@field public mail_key string @邮件配置key, 因为要在代码里面写死，推荐用有意义的字符串做key
+---@field public ctime integer @邮件创建时间
+---@field public flag integer @1<<0:是否可领取 1<<1:是否只展示 1<<2:是否已读 1<<3:是否锁定
+---@field public rewards ItemData[] @可领取奖励列表 或者 奖励展示列表
+---@field public trace integer @追踪奖励邮件的来源
+---@field public parmas string @json格式邮件自定义参数
+
+
+---@class ProductionData
+---@field public Id integer
+---@field public ConfigId integer
+---@field public TargetTime integer
+---@field public StartTime integer
+---@field public ProductionState integer
+
+
+---@class AttributeEntryData
+---@field public Id integer
+---@field public Key integer
+---@field public Value integer
+---@field public EntryType integer
+
+
+---@class TaskData
+---@field public ConfigId integer
+---@field public TaskState integer
+---@field public TaskPogress integer
+
+
+---@class RankData
+---@field public Id integer
+---@field public UnitId integer
+---@field public Name string
+---@field public Count integer
 
 
 ---@class C2SMailList
@@ -100,48 +172,6 @@
 ---@field public id integer
 
 
----@class Vector2
----@field public x number
----@field public y number
-
-
----@class ItemData
----@field public id integer @道具id
----@field public count integer @道具数量
-
-
----@class MailData
----@field public id integer @邮件唯一ID
----@field public mail_key string @邮件配置key, 因为要在代码里面写死，推荐用有意义的字符串做key
----@field public ctime integer @邮件创建时间
----@field public flag integer @1<<0:是否可领取 1<<1:是否只展示 1<<2:是否已读 1<<3:是否锁定
----@field public rewards ItemData[] @可领取奖励列表 或者 奖励展示列表
----@field public trace integer @追踪奖励邮件的来源
----@field public parmas string @json格式邮件自定义参数
-
-
----@class AuthUser
----@field public addr_user integer @玩家服务address
----@field public openid string @
----@field public uid integer @玩家uid
----@field public logouttime integer @玩家登出时间,0表示在线
----@field public online boolean @@是否在线
-
-
----@class UserData
----@field public openid string @
----@field public uid integer @玩家uid
----@field public name string @玩家名字
----@field public level integer @玩家等级
----@field public score integer @玩家分数
----@field public logintime integer @玩家上线时间
----@field public diamond integer @宝石
----@field public gold integer @金币
----@field public chapterid integer @当前章节ID
----@field public exp integer @当前经验
----@field public itemlist table<integer, ItemData> @道具列表
-
-
 ---@class S2CErrorCode
 ---@field public code integer @错误码
 
@@ -180,43 +210,137 @@
 ---@field public world string
 
 
+---@class C2SStartGameLevel
+---@field public levelid integer
+
+
+---@class S2CStartGameLevel
+
+
+---@class C2SEndGameLevel
+---@field public levelid integer
+
+
+---@class S2CEndGameLevel
+---@field public round integer
+---@field public battleresult integer
+
+
+---@class C2SUpRoleLevel
+
+
+---@class S2CUpRoleLevel
+
+
+---@class C2SAddAttributePoint
+---@field public numerictype integer
+
+
+---@class S2CAddAttributePoint
+
+
+---@class C2SSellItem
+---@field public itemid integer
+
+
+---@class S2CSellItem
+
+
+---@class C2SEquipItem
+---@field public itemid integer
+
+
+---@class S2CEquipItem
+
+
+---@class C2SUnLoadEquipItem
+---@field public equipposition integer
+
+
+---@class S2CUnLoadEquipItem
+
+
+---@class C2SSendChat
+---@field public msg string
+
+
+---@class S2CNoticeChat
+---@field public nickname string
+---@field public msg string
+
+
+---@class C2SStartProduction
+---@field public configid integer
+
+
+---@class S2CStartProduction
+---@field public productiondata ProductionData
+
+
+---@class C2SReceiveProduction
+---@field public configid integer
+
+
+---@class S2CReceiveProduction
+---@field public productiondata ProductionData
+
+
+---@class C2SReceiveTaskReward
+---@field public configid integer
+
+
+---@class S2CReceiveTaskReward
+---@field public productiondata ProductionData
+
+
+---@class S2CUpdateTaskInfo
+---@field public taskdata TaskData
+
+
+---@class C2SGetRanks
+
+
+---@class S2CGetRanks
+---@field public rankdatas RankData[]
 
 
 
 
----@class node_scripts
----@field Console Console
-
-
----@class center_scripts
----@field Center Center
-
-
----@class user_scripts
----@field User User
----@field UserModel UserModel
----@field Hello Hello
----@field Item Item
-
-
----@class mail_scripts
----@field Mail Mail
-
-
----@class room_scripts
----@field Room Room
----@field Aoi Aoi
 
 
 ---@class auth_scripts
 ---@field Auth Auth
 
 
+---@class center_scripts
+---@field Center Center
+
+
 ---@class gate_scripts
 ---@field Gate Gate
 
 
+---@class mail_scripts
+---@field Mail Mail
+
+
+---@class node_scripts
+---@field Console Console
+
+
+---@class room_scripts
+---@field Aoi Aoi
+---@field Room Room
+
+
+---@class user_scripts
+---@field Hello Hello
+---@field Item Item
+---@field User User
+---@field UserModel UserModel
+
+
 ---@class static_conf
----@field item item_cfg[]
----@field example example_cfg[]
 ---@field constant constant
+---@field example example_cfg[]
+---@field item item_cfg[]

@@ -50,3 +50,123 @@ message S2CWorld
 {
     string world = 1;
 }
+
+message C2SStartGameLevel
+{
+    int32 levelid = 1;
+}
+
+message S2CStartGameLevel
+{
+    
+}
+
+message C2SEndGameLevel
+{
+    int32 levelid = 1;
+}
+
+message S2CEndGameLevel
+{
+    int32 round = 1;
+	int32 battleresult = 2;
+}
+
+message C2SUpRoleLevel
+{
+}
+
+message S2CUpRoleLevel
+{
+}
+
+message C2SAddAttributePoint
+{
+    int32 numerictype = 1;
+}
+
+message S2CAddAttributePoint
+{
+}
+
+message C2SSellItem
+{
+    int32 itemid = 1;
+}
+
+message S2CSellItem
+{
+}
+
+message C2SEquipItem
+{
+    int32 itemid = 1;
+}
+
+message S2CEquipItem
+{
+}
+
+message C2SUnLoadEquipItem
+{
+    int32 equipposition = 1;
+}
+
+message S2CUnLoadEquipItem
+{
+}
+
+message C2SSendChat
+{
+    string msg = 1;
+}
+
+message S2CNoticeChat
+{
+    string nickname = 1;
+    string msg = 2;
+}
+
+message C2SStartProduction
+{
+    int32 configid = 1;
+}
+
+message S2CStartProduction
+{
+    ProductionData productiondata = 1;
+}
+
+message C2SReceiveProduction
+{
+    int32 configid = 1;
+}
+
+message S2CReceiveProduction
+{
+    ProductionData productiondata = 1;
+}
+
+message C2SReceiveTaskReward
+{
+    int32 configid = 1;
+}
+
+message S2CReceiveTaskReward
+{
+    ProductionData productiondata = 1;
+}
+
+message S2CUpdateTaskInfo
+{
+    TaskData taskdata = 1;
+}
+
+message C2SGetRanks
+{
+}
+
+message S2CGetRanks
+{
+    repeated RankData rankdatas = 1;
+}

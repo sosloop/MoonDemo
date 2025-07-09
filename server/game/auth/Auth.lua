@@ -269,6 +269,7 @@ function Auth.C2SLogin(req)
         auth_queue[req.uid] = lock
     end
 
+    -- moon.debug("c2slogin openid",req.openid,'uid',req.uid,'pull',req.pull,'fd',req.fd)
     if not req.pull then
         if lock("count") > 0 then
             moon.error("user auth too quickly", req.fd, req.uid, req.addr, "is pull:", req.pull)
@@ -279,7 +280,10 @@ function Auth.C2SLogin(req)
         ---make the user offline event in right order.
         local c = context.uid_map[req.uid]
         if c and c.logouttime == 0 then
-            context.GateEvent.Gate.Kick(0, req.fd)
+            -- context.GateEvent.Gate.Kick(0, req.fd)
+            --顶号操作
+            context.S2C(req.uid,CmdCode.S2CErrorCode,{code = 1000})
+            context.GateEvent.Gate.Kick(req.uid)
             Auth.Disconnect(req.uid)
             return
         end
