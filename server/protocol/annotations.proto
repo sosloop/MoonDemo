@@ -27,4 +27,5 @@ message UserData{
     int64 exp = 11;//当前经验
     map<int32,ItemData> itemlist = 12;//道具列表
     int64 regtime = 13;//玩家注册时间
+    map<int32,ProductionData> productionlist = 12;//打造列表
 }

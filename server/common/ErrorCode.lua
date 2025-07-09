@@ -42,6 +42,10 @@ local ErrorCode = {
 
     ---奖励已经领取过
     DailyTaskReceived = 701,
+
+    ---道具不存在
+    ProductionNotExist = 801,
+    ProductionExist = 802,
 }
 
 return ErrorCode

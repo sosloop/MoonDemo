@@ -25,32 +25,31 @@ message MailData{
 
 message ProductionData
 {
-	int64 Id = 1;
-	int32 ConfigId = 2;
-	int64 TargetTime = 3;
-	int64 StartTime = 4;
-	int32 ProductionState = 5;
+	int32 configid = 2;
+	int64 targettime = 3;
+	int64 starttime = 4;
+	int32 productionstate = 5;
 }
 
 message AttributeEntryData
 {
-	int64 Id = 1;
-	int32 Key = 2;
-	int64 Value = 3;
-	int32 EntryType = 4;
+	int64 id = 1;
+	int32 key = 2;
+	int64 value = 3;
+	int32 entrytype = 4;
 }
 
 message TaskData
 {
-    int32 ConfigId = 1;
-    int32 TaskState = 2;
-    int32 TaskPogress = 3;
+    int32 configid = 1;
+    int32 taskstate = 2;
+    int32 taskpogress = 3;
 }
 
 message RankData
 {
-	int64 Id = 1;
-	int64 UnitId = 2;
-	string Name = 3;
-	int32 Count = 4;
+	int64 id = 1;
+	int64 unitid = 2;
+	string name = 3;
+	int32 count = 4;
 }

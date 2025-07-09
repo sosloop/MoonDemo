@@ -9,7 +9,7 @@
 S2CGameOver
 score (RscoreBª
 NetMessagebproto3
-Œ
+ü
 common.proto"%
 Vector2
 x (Rx
@@ -24,29 +24,28 @@ NetMessagebproto3
 flag (Rflag#
 rewards (2	.ItemDataRrewards
 trace (Rtrace
-parmas (	Rparmas"¤
-ProductionData
-Id (RId
-ConfigId (RConfigId
+parmas (	Rparmas"”
+ProductionData
+configid (Rconfigid
 
-TargetTime (R
-TargetTime
-	StartTime (R	StartTime(
-ProductionState (RProductionState"j
+targettime (R
+targettime
+	starttime (R	starttime(
+productionstate (Rproductionstate"j
 AttributeEntryData
-Id (RId
-Key (RKey
-Value (RValue
-	EntryType (R	EntryType"f
+id (Rid
+key (Rkey
+value (Rvalue
+	entrytype (R	entrytype"f
 TaskData
-ConfigId (RConfigId
-	TaskState (R	TaskState 
-TaskPogress (RTaskPogress"\
+configid (Rconfigid
+	taskstate (R	taskstate 
+taskpogress (Rtaskpogress"\
 RankData
-Id (RId
-UnitId (RUnitId
-Name (	RName
-Count (RCountBª
+id (Rid
+unitid (Runitid
+name (	Rname
+count (RcountBª
 NetMessagebproto3
 ë
 

@@ -25,6 +25,7 @@
 ---@field public exp integer @当前经验
 ---@field public itemlist table<integer, ItemData> @道具列表
 ---@field public regtime integer @玩家注册时间
+---@field public productionlist table<integer, ProductionData> @打造列表
 
 
 ---@class C2SMatch
@@ -62,31 +63,30 @@
 
 
 ---@class ProductionData
----@field public Id integer
----@field public ConfigId integer
----@field public TargetTime integer
----@field public StartTime integer
----@field public ProductionState integer
+---@field public configid integer
+---@field public targettime integer
+---@field public starttime integer
+---@field public productionstate integer
 
 
 ---@class AttributeEntryData
----@field public Id integer
----@field public Key integer
----@field public Value integer
----@field public EntryType integer
+---@field public id integer
+---@field public key integer
+---@field public value integer
+---@field public entrytype integer
 
 
 ---@class TaskData
----@field public ConfigId integer
----@field public TaskState integer
----@field public TaskPogress integer
+---@field public configid integer
+---@field public taskstate integer
+---@field public taskpogress integer
 
 
 ---@class RankData
----@field public Id integer
----@field public UnitId integer
----@field public Name string
----@field public Count integer
+---@field public id integer
+---@field public unitid integer
+---@field public name string
+---@field public count integer
 
 
 ---@class C2SMailList
@@ -336,6 +336,7 @@
 ---@class user_scripts
 ---@field Hello Hello
 ---@field Item Item
+---@field Production Production
 ---@field User User
 ---@field UserModel UserModel
 
