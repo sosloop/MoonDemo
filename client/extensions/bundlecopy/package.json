@@ -1,0 +1,59 @@
+{
+    "$schema": "./@types/schema/package/index.json",
+    "package_version": 2,
+    "name": "bundlecopy",
+    "version": "1.0.0",
+    "author": "corki",
+    "editor": ">=3.8.3",
+    "scripts": {
+        "preinstall": "node ./scripts/preinstall.js",
+        "build": "tsc",
+        "watch": "tsc -w"
+    },
+    "description": "i18n:bundlecopy.description",
+    "main": "./dist/main.js",
+    "devDependencies": {
+        "@cocos/creator-types": "^3.8.3",
+        "@types/node": "^18.17.1",
+        "typescript": "^4.3.4"
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:bundlecopy",
+                "label": "查看所有分包文件夹",
+                "message": "show-bundels"
+            },
+            {
+                "path": "i18n:bundlecopy",
+                "label": "导表批处理",
+                "message": "export-excel"
+            }
+        ],
+        "messages": {
+            "show-bundels": {
+                "methods": [
+                    "showBundels"
+                ]
+            },
+            "export-excel": {
+                "methods": [
+                    "exportExcel"
+                ]
+            }
+        },
+        "inspector": {
+            "section": {
+                "node": {
+                    "cc.Widget": "./dist/diywidget.js"
+                }
+            }
+        },
+        "assets": {
+            "menu": {
+                "methods": "./dist/assets-menu.js",
+                "assetMenu": "onAssetMenu"
+            }
+        }
+    }
+}
